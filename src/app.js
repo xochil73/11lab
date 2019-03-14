@@ -20,9 +20,13 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+//Auth Route Handler
+app.use(authRouter);
+
 // Catchalls
 app.use(notFound);
 app.use(errorHandler);
+
 
 let isRunning = false;
 

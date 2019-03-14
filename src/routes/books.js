@@ -2,11 +2,17 @@
 
 const express = require('express');
 const router = express.Router();
+const auth = require('./auth/middlewear.js');
 
-router.get('/books', handleGetAll);
-router.get('/books/:id', handleGetOne);
+router.get('/books', auth, handleGetAll);
+router.get('/books/:id', auth, handleGetOne);
+
+
+app.use(auth);
 
 // Route Handlers
+
+
 function handleGetAll(req, res, next) {
     let books = {
         count: 3,

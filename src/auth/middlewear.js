@@ -21,22 +21,24 @@ module.exports = (req, res, next) => {
         return _authError();
     }
 
-    function _authBasic() {
-        let base64Buffer = Buffer.from(authString,'base64'); // <Buffer 01 02...>
-        let bufferString = base64Buffer.toString(); // john:mysecret
+    function _authBasic(authString) {
+        const base64Buffer = Buffer.from(authString,'base64'); // <Buffer 01 02...>
+        const bufferString = base64Buffer.toString(); // john:mysecret
         let [username,password] = bufferString.split(':');  // variables username="john" and password="mysecret"
-        let auth = [username,password];  // {username:"john", password:"mysecret"}
+        let auth = {username,password};  // {username:"john", password:"mysecret"}
 
         return User.authenticateBasic(auth)
             .then( user => _authenticate(user) );
     }
 
     function _authenticate(user) {
-        if ( user ) {
+        if (user) {
+            request.user = user;
+            request.token = user.generateToken();
             next();
         }
         else {
-            _authError();
+            return _authError();
         }
     }
 

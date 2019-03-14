@@ -7,7 +7,9 @@
     "start": "node index.js",
     "watch": "nodemon index.js",
     "test-watch": "jest --watchAll",
-    "test": "jest"
+    "test": "jest",
+    "dbOn": "mkdir -p ./db && mongod --dbpath ./db",
+    "dbOff": "killall mongod"
   },
   "jest": {
     "testEnvironment": "node"
@@ -31,4 +33,5 @@
     "supertest": "^3.3.0",
     "swagger-ui-express": "^4.0.2"
   }
+
 }
