@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
     try {
 
         let [authType, encodedString] = req.headers.authorization.split(/\s+/);
-
+// encodedString -- reminder
         // BASIC Auth  ... Authorization:Basic ZnJlZDpzYW1wbGU=
 
         switch(authType.toLowerCase()) {
