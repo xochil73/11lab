@@ -4,7 +4,7 @@ const express = require('express');
 const authRouter = express.Router();
 
 const User = require('./users-model.js');
-const auth = require('src/auth/middleware.js');
+const auth = require('./middlewear.js');
 
 authRouter.post('/signup', (req, res, next) => {
     let user = new User(req.body);

@@ -2,13 +2,13 @@
 
 const express = require('express');
 const router = express.Router();
-const auth = require('./auth/middlewear.js');
+const auth = require('../auth/middlewear.js');
 
 router.get('/books', auth, handleGetAll);
 router.get('/books/:id', auth, handleGetOne);
 
 
-app.use(auth);
+// app.use(auth);
 
 // Route Handlers
 

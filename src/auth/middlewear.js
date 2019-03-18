@@ -6,13 +6,13 @@ module.exports = (req, res, next) => {
 
     try {
 
-        let [authType, authString] = req.headers.authorization.split(/\s+/);
+        let [authType, encodedString] = req.headers.authorization.split(/\s+/);
 // encodedString -- reminder
         // BASIC Auth  ... Authorization:Basic ZnJlZDpzYW1wbGU=
 
         switch(authType.toLowerCase()) {
             case 'basic':
-                return _authBasic(authString);
+                return _authBasic(encodedString);
             default:
                 return _authError();
         }
